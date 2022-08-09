@@ -1,0 +1,104 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Credit Card Application</title>
+  </head>
+  <body>
+    <script src="/scripts/CreditCard.js"></script>
+    <link rel="stylesheet" href="/styles/CreditCard.css" />
+    <!--Bootstrap Contents-->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/styles/CreditCard.css">
+    <!-- Navbar Begins-->
+    <nav class="navbar navbar-light">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#"><b>Pay</b>Me</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="#">Manage Expenses</a></li>
+            <li class="active"><a href="/pages/addCreditCard/CreditCard.html">Manage Credit Cards</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#"
+                ><span class="glyphicon glyphicon-usd"></span> Available Limit:
+                $25,000</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><span class="glyphicon glyphicon-log-in"></span> Login</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!--Navbar Ends-->
+      <div class="creditCardForm">
+        <div class="heading">
+            <h1>Add Credit Card</h1>
+        </div>
+        <div class="payment">
+            <form>
+                <div class="form-group owner">
+                    <label for="owner">Owner</label>
+                    <input type="text" class="form-control" id="owner">
+                </div>
+                <div class="form-group CVV">
+                    <label for="cvv">CVV</label>
+                    <input type="password" class="form-control" id="cvv">
+                </div>
+                <div class="form-group" id="card-number-field">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" class="form-control" id="cardNumber">
+                </div>
+                <div class="form-group" id="expiration-date">
+                    <label>Expiration Date</label>
+                    <select>
+                        <option value="01">January</option>
+                        <option value="02">February </option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <select>
+                        <option value="23"> 2023</option>
+                        <option value="24"> 2024</option>
+                        <option value="25"> 2025</option>
+                        <option value="26"> 2026</option>
+                        <option value="27"> 2027</option>
+                        <option value="28"> 2028</option>
+                        <option value="29"> 2029</option>
+                        <option value="30"> 2030</option>
+                    </select>
+                </div>
+                <div class="form-group" id="credit_cards">
+                    <img src="/images/visa.jpg" id="visa">
+                    <img src="/images/mastercard.jpg" id="mastercard">
+                    <img src="/images/amex.jpg" id="amex">
+                </div>
+                <div class="form-group" id="pay-now">
+                    <button type="submit" class="btn btn-default" id="confirm-purchase">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/scripts/CreditCard.js"></script>
+  </body>
+</html>
