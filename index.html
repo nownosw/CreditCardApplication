@@ -15,6 +15,46 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Datatable Contents -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        var t=$("#example").DataTable({
+          "pageLength":6,
+          "searching":false,
+          "info":false,
+          "ordering":false,
+          "lengthChange":false,
+          "bPaginate": false,
+          scrollY:'92%'
+        });
+        
+      var form=document.getElementById('myform')
+      var t=$("#example").DataTable();
+      form.addEventListener('submit',function(event){
+        event.preventDefault();
+        var expensedate=document.getElementById('date').value
+        var amount=document.getElementById('amount').value
+        var purpose=document.getElementById('purpose').value
+        var card=document.getElementById('cards').value
+
+        t.row.add([
+            "Personal",
+            expensedate,
+            amount,
+            purpose,
+            card,
+            "$21,222"
+          ])
+          .draw(false);
+      })
+    });
+    </script>
     <!-- Navbar Begins-->
     <nav class="navbar navbar-light">
       <div class="container-fluid">
@@ -77,31 +117,34 @@
       <!-- Add Expense Block Starts -->
       <div class="add-expense">
         <div class="formcontainer">
-            <form class="form-style-7">
+          <h1>Please Enter your Expenses</h1>
+            <form class="form-style-7" id="myform">
               <ul>
+                <li>
+                  <label for="purpose">Enter Expense Date</label>
+                  <input type="date" name="date" id="date">
+                </li>
+                <!-- <li>
+                  Please Enter your Expense
+                </li> -->
               <li>
-                  <label for="name">Enter Your Expense Amount ($)</label>
-                  <input type="text" name="name" maxlength="100">
+                  <label for="amount">Enter Your Expense Amount ($)</label>
+                  <input type="text" name="amount" id="amount" maxlength="100">
               </li>
               <li>
-                  <label for="email">Expense Purpose</label>
-                  <input type="email" name="email" maxlength="100">
+                  <label for="purpose">Expense Purpose</label>
+                  <input type="text" name="purpose" id="purpose" maxlength="100">
               </li>
               <li>
                   <label for="url">Select Expense for Card</label>
-                  <select id="cars" name="cars">
+                  <select id="cards" name="cards">
                     <option value="card1">Card1</option>
                     <option value="card2">Card2</option>
                     <option value="card3">Card3</option>
                   </select>
               </li>
               <li>
-                  <label for="bio">About You</label>
-                  <textarea name="bio" onkeyup="adjust_textarea(this)"></textarea>
-                  <span>Say something about yourself</span>
-              </li>
-              <li>
-                  <input type="submit" value="Send This" >
+                  <input type="submit" value="Add Expense" id="submit" >
               </li>
               </ul>
               </form>
@@ -109,7 +152,41 @@
       </div>
       <!-- Add Expense Block Ends -->
       <!-- Expense Report Block Begins -->
-      <div class="expense-report"></div>
+      <div class="expense-report">
+        <div class="datatablecontainer">
+          <table id="example" class="stripe" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Expense Type</th>
+                    <th>Expense Date</th>
+                    <th>Expense Amount ($)</th>
+                    <th>Expense Purpose</th>
+                    <th>Card</th>
+                    <th>Available limit</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Personal</td>
+                    <td>DATETIMEOBJECT</td>
+                    <td>$3,000</td>
+                    <td>Loan to Liam</td>
+                    <td>Card1</td>
+                    <td>$47000</td> 
+                </tr>
+                <tr>
+                    <td>Personal</td>
+                    <td>DATETIMEOBJECT</td>
+                    <td>$21,000</td>
+                    <td>Car Repair</td>
+                    <td>Card1</td>
+                    <td>$26000</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+      </div>
       <!-- Expense Report Block Ends -->
     </div>
   </body>
