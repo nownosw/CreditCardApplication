@@ -112,7 +112,7 @@
   margin-top: -1.5%;
   height: 97%;
   width: 60%;
-  background-color: #99338f;
+  background-color: skyblue;
   border-radius: 15px;
 }
 
@@ -126,7 +126,7 @@
 
 .form-style-7 {
   max-width: 100%;
-  background: #99338f;
+  background: skyblue;
   border-radius: 2px;
   font-family: Georgia, "Times New Roman", Times, serif;
   display: flex;
@@ -251,6 +251,6 @@
   margin-top: 3%;
   height: 84%;
   width: 90%;
-  background-color: #99338f;
+  background-color:skyblue;
   border-radius: 20px;
 }
