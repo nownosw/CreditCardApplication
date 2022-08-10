@@ -7,187 +7,198 @@
   </head>
   <body>
     <link rel="stylesheet" href="/styles/styles.css" />
-    <script src="/scripts/index.js"></script>
+    
     <!-- Bootstrap Contents -->
     <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
     <!-- Datatable Contents -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link
+    rel="stylesheet"
+    href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script
-      type="text/javascript"
-      src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"
+    type="text/javascript"
+    src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"
     ></script>
-    <script>
-      $(document).ready(function () {
-        var t=$("#example").DataTable({
-          "pageLength":6,
-          "searching":false,
-          "info":false,
-          "ordering":false,
-          "lengthChange":false,
-          "bPaginate": false,
-          scrollY:'92%'
-        });
-        
-      var form=document.getElementById('myform')
-      var t=$("#example").DataTable();
-      form.addEventListener('submit',function(event){
-        event.preventDefault();
-        var expensedate=document.getElementById('date').value
-        var amount=document.getElementById('amount').value
-        var purpose=document.getElementById('purpose').value
-        var card=document.getElementById('cards').value
 
-        t.row.add([
-            "Personal",
-            expensedate,
-            amount,
-            purpose,
-            card,
-            "$21,222"
-          ])
-          .draw(false);
-      })
-    });
-    </script>
-    <!-- Navbar Begins-->
-    <nav class="navbar navbar-light">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#"><b>Pay</b>Me</a>
+    <!-- Highcharts Contents -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<!-- Navbar Begins-->
+<nav class="navbar navbar-light">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><b>Pay</b>Me</a>
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#">Manage Expenses</a></li>
           <li>
             <a href="/pages/addCreditCard/CreditCard.html"
-              >Manage Credit Cards</a
+            >Manage Credit Cards</a
             >
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
             <a href="#"
-              ><span class="glyphicon glyphicon-usd"></span> Available Limit:
-              $25,000</a
+            ><span class="glyphicon glyphicon-usd"></span> Available Limit:
+            $25,000</a
             >
           </li>
           <li>
             <a href="#"
-              ><span class="glyphicon glyphicon-log-in"></span> Login</a
+            ><span class="glyphicon glyphicon-log-in"></span> Login</a
             >
           </li>
         </ul>
       </div>
     </nav>
     <!-- Navbar Ends -->
+    
     <div class="wrapperdiv">
       <!-- Credit Card Display Begins -->
       <div class="creditcard-info">
-        <div class="card">
-          <div class="top-block">
-            <div class="card-chip">
-              <i class="icon-credit-card icon-3x"></i>
+        <div class="cardwrapper">
+          <div class="card">
+            <div class="top-block">
+              <div class="card-chip">
+                <i class="icon-credit-card icon-3x"></i>
+              </div>
+              <span class="card-name"> Oxygen Pay </span>
             </div>
-            <span class="card-name"> Oxygen Pay </span>
-          </div>
-          <div class="card-number">
-            <p>5459 xxxx xxxx 7203</p>
-          </div>
-          <div class="bottom-block">
-            <div class="balance">
-              <div>Balance</div>
-              <div class="card-balance">$ 8619.98</div>
+            <div class="card-number">
+              <p>5459 xxxx xxxx 7203</p>
             </div>
-            <div class="card-icon">
-              <span class="circle-left">
+            <div class="bottom-block">
+              <div class="balance">
+                <div>Balance</div>
+                <div class="card-balance">$ 8619.98</div>
+              </div>
+              <div class="card-icon">
+                <span class="circle-left">
+                  <i class="icon-circle icon-3x"></i>
+                </span>
                 <i class="icon-circle icon-3x"></i>
-              </span>
-              <i class="icon-circle icon-3x"></i>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <!-- Credit Card Display Ends -->
+      
       <!-- Add Expense Block Starts -->
       <div class="add-expense">
         <div class="formcontainer">
-          <h1>Please Enter your Expenses</h1>
-            <form class="form-style-7" id="myform">
-              <ul>
-                <li>
-                  <label for="purpose">Enter Expense Date</label>
-                  <input type="date" name="date" id="date">
-                </li>
-                <!-- <li>
-                  Please Enter your Expense
-                </li> -->
+          <!-- <h1>Please Enter your Expenses</h1> -->
+          <form class="form-style-7" id="myform">
+            <ul>
               <li>
-                  <label for="amount">Enter Your Expense Amount ($)</label>
-                  <input type="text" name="amount" id="amount" maxlength="100">
+                <label for="purpose">Purpose of Expense</label>
+                <select name="purpose" id="purpose">
+                  <option value="Bills">Bills</option>
+                  <option value="Car">Car</option>
+                  <option value="Clothes">Clothes</option>
+                  <option value="Eating Out">Eating Out</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Health">Health</option>
+                  <option value="House">House</option>
+                  <option value="Transport">Transport</option>
+                </select>
               </li>
               <li>
-                  <label for="purpose">Expense Purpose</label>
-                  <input type="text" name="purpose" id="purpose" maxlength="100">
+                <label for="date">Enter Expense Date</label>
+                <input type="date" name="date" id="date" />
+              </li>
+              <!-- <li>
+                Please Enter your Expense
+              </li> -->
+              <li>
+                <label for="amount">Enter Your Expense Amount ($)</label>
+                <input type="text" name="amount" id="amount" maxlength="100" />
               </li>
               <li>
-                  <label for="url">Select Expense for Card</label>
-                  <select id="cards" name="cards">
-                    <option value="card1">Card1</option>
-                    <option value="card2">Card2</option>
-                    <option value="card3">Card3</option>
-                  </select>
+                <label for="purpose">Expense Purpose</label>
+                <input
+                type="text"
+                name="purpose"
+                id="purpose"
+                maxlength="100"
+                />
               </li>
               <li>
-                  <input type="submit" value="Add Expense" id="submit" >
+                <label for="url">Select Expense for Card</label>
+                <select id="cards" name="cards">
+                  <option value="card1">Card1</option>
+                  <option value="card2">Card2</option>
+                  <option value="card3">Card3</option>
+                </select>
               </li>
-              </ul>
-              </form>
+              <li>
+                <input type="submit" value="Add Expense" id="submit" />
+              </li>
+            </ul>
+          </form>
         </div>
       </div>
       <!-- Add Expense Block Ends -->
       <!-- Expense Report Block Begins -->
       <div class="expense-report">
-        <div class="datatablecontainer">
-          <table id="example" class="stripe" style="width:100%">
+        <div class="datatablecontainer" id="datatablecontainer">
+          <table id="example" class="stripe" style="width: 100%">
             <thead>
-                <tr>
-                    <th>Expense Type</th>
-                    <th>Expense Date</th>
-                    <th>Expense Amount ($)</th>
-                    <th>Expense Purpose</th>
-                    <th>Card</th>
-                    <th>Available limit</th>
-                    
-                </tr>
+              <tr>
+                <th>Expense Type</th>
+                <th>Expense Date</th>
+                <th>Expense Amount ($)</th>
+                <th>Expense Purpose</th>
+                <th>Card</th>
+                <th>Available limit</th>
+              </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Personal</td>
-                    <td>DATETIMEOBJECT</td>
-                    <td>$3,000</td>
-                    <td>Loan to Liam</td>
-                    <td>Card1</td>
-                    <td>$47000</td> 
-                </tr>
-                <tr>
-                    <td>Personal</td>
-                    <td>DATETIMEOBJECT</td>
-                    <td>$21,000</td>
-                    <td>Car Repair</td>
-                    <td>Card1</td>
-                    <td>$26000</td>
-                </tr>
+              <tr>
+                <td>Personal</td>
+                <td>DATETIMEOBJECT</td>
+                <td>$3,000</td>
+                <td>Loan to Liam</td>
+                <td>Card1</td>
+                <td>$47000</td>
+              </tr>
+              <tr>
+                <td>Personal</td>
+                <td>DATETIMEOBJECT</td>
+                <td>$21,000</td>
+                <td>Car Repair</td>
+                <td>Card1</td>
+                <td>$26000</td>
+              </tr>
             </tbody>
-        </table>
+          </table>
+        </div>
+        <!-- Expense Graph Container Begins -->
+        <div class="datatablecontainer" id="expensegraphcontainer">
+          <div class="graph">
+            
+          </div>
+        </div>
+        <!-- Expense Graph Container Ends -->
+        <div class="buttoncontainer">
+          <button id="changeview" onclick="changeView()">View Graph</button>
         </div>
       </div>
       <!-- Expense Report Block Ends -->
     </div>
+    <script src="/scripts/index.js"></script>
   </body>
-</html>
+  </html>
