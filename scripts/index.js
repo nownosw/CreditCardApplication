@@ -20,7 +20,20 @@ $(document).ready(function () {
       var card = document.getElementById("cards").value;
       var purpose=document.getElementById("purpose").value
       t.row.add([purpose,expensedate, amount, purpose, card, "$21,222"]).draw(false);
+      newamount=parseInt(amount)
+      var pData = {
+         ExpenseType : "Bill",
+         Date : "2022-04-22T16:42:25.710",
+         Amount : newamount,
+         ExpensePurpose : purpose,
+         Card : card,
+         AvailableLimit: "$40000"
+      }
+      console.log(pData);
+      ajaxCall(pData);
     });
+
+
 
     var chart={
         zoomType:'x'
@@ -230,4 +243,20 @@ $(document).ready(function () {
         x.style.display="block";
         y.style.display="none"
     }
+}
+
+function ajaxCall(pData) {
+   var settings = {
+      "url": "https://localhost:44328/api/Home/AddValues",
+      "method": "POST",
+      "timeout": 0,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "data": JSON.stringify(pData),
+   };
+    
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+    });
 }
