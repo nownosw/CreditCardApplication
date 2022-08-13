@@ -21,6 +21,11 @@ $(document).ready(function () {
       var purpose=document.getElementById("purpose").value
       t.row.add([purpose,expensedate, amount, purpose, card, "$21,222"]).draw(false);
       newamount=parseInt(amount)
+
+      var lastLimit=GetLastLimit();
+
+      console.log(lastLimit);
+
       var pData = {
          ExpenseType : "Bill",
          Date : "2022-04-22T16:42:25.710",
@@ -29,8 +34,8 @@ $(document).ready(function () {
          Card : card,
          AvailableLimit: "$40000"
       }
-      console.log(pData);
-      ajaxCall(pData);
+
+      // InsertDataIntoDb(pData);
     });
 
 
@@ -245,7 +250,7 @@ $(document).ready(function () {
     }
 }
 
-function ajaxCall(pData) {
+function InsertDataIntoDb(pData) {
    var settings = {
       "url": "https://localhost:44328/api/Home/AddValues",
       "method": "POST",
@@ -255,6 +260,18 @@ function ajaxCall(pData) {
       },
       "data": JSON.stringify(pData),
    };
+    
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+    });
+}
+
+function GetLastLimit(){
+   var settings = {
+      "url": "https://localhost:44328/api/Home/FetchLastLimit",
+      "method": "GET",
+      "timeout": 0,
+    };
     
     $.ajax(settings).done(function (response) {
       console.log(response);
