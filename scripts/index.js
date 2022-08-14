@@ -13,32 +13,81 @@ $(document).ready(function () {
     var form = document.getElementById("myform");
     var t = $("#example").DataTable();
     form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      var expensedate = document.getElementById("date").value;
-      var amount = document.getElementById("amount").value;
-      var purpose = document.getElementById("purpose").value;
-      var card = document.getElementById("cards").value;
-      var purpose=document.getElementById("purpose").value
-      t.row.add([purpose,expensedate, amount, purpose, card, "$21,222"]).draw(false);
-      newamount=parseInt(amount)
-
-      var lastLimit=GetLastLimit();
-
-      console.log(lastLimit);
-
-      var pData = {
-         ExpenseType : "Bill",
-         Date : "2022-04-22T16:42:25.710",
+       event.preventDefault();
+       var expensedate = document.getElementById("date").value;
+       var amount = document.getElementById("amount").value;
+       var expenseType = document.getElementById("expenseType").value;
+       var card = document.getElementById("cards").value;
+       var purpose=document.getElementById("purpose").value
+       newamount=parseInt(amount)
+       
+       var lastLimitstring=GetLastLimit();
+       console.log(lastLimitInt)
+       
+       var lastLimitInt=parseInt(lastLimitstring);
+       
+       let difference=lastLimitInt-newamount;
+       
+       var pData = {
+          ExpenseType : expenseType,
+         Date : expensedate,
          Amount : newamount,
          ExpensePurpose : purpose,
          Card : card,
-         AvailableLimit: "$40000"
+         AvailableLimit: difference
       }
-
+      
       // InsertDataIntoDb(pData);
-    });
+      
+      var allData=FetchAllData()
+      
+      t.row.add([expenseType,expensedate, amount, purpose, card, difference]).draw(false);
+   });
 
+    function InsertDataIntoDb(pData) {
+      var settings = {
+         "url": "https://localhost:44328/api/Home/AddValues",
+         "method": "POST",
+         "timeout": 0,
+         "headers": {
+           "Content-Type": "application/json"
+         },
+         "data": JSON.stringify(pData),
+      };
+       
+       $.ajax(settings).done(function (response) {
+         console.log(response);
+       });
+   }
+   
+   function GetLastLimit(){
+      var settings = {
+         "url": "https://localhost:44328/api/Home/FetchLastLimit",
+         "method": "GET",
+         "async":false,
+         "success":function(response){
+            lastLimitInt=response
+         },
+         "timeout": 0,
+       };
+       
+       $.ajax(settings).done(function (response) {
+         console.log(response);
+         return response
+       });
+   }
 
+   function FetchAllData(){
+      var settings = {
+         "url": "https://localhost:44328/api/Home/FetchValues",
+         "method": "GET",
+         "timeout": 0,
+       };
+       
+       $.ajax(settings).done(function (response) {
+         console.log(response);
+       });
+   }
 
     var chart={
         zoomType:'x'
@@ -248,32 +297,4 @@ $(document).ready(function () {
         x.style.display="block";
         y.style.display="none"
     }
-}
-
-function InsertDataIntoDb(pData) {
-   var settings = {
-      "url": "https://localhost:44328/api/Home/AddValues",
-      "method": "POST",
-      "timeout": 0,
-      "headers": {
-        "Content-Type": "application/json"
-      },
-      "data": JSON.stringify(pData),
-   };
-    
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-    });
-}
-
-function GetLastLimit(){
-   var settings = {
-      "url": "https://localhost:44328/api/Home/FetchLastLimit",
-      "method": "GET",
-      "timeout": 0,
-    };
-    
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-    });
 }
