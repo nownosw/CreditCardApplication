@@ -1,3 +1,6 @@
+var lastLimitstring;      
+var allData;
+
 $(document).ready(function () {
     $("#expensegraphcontainer").css("display", "none");
     var t = $("#example").DataTable({
@@ -21,12 +24,14 @@ $(document).ready(function () {
        var purpose=document.getElementById("purpose").value
        newamount=parseInt(amount)
        
-       var lastLimitstring=GetLastLimit();
-       console.log(lastLimitInt)
-       
+       GetLastLimit();
        var lastLimitInt=parseInt(lastLimitstring);
+       console.log(lastLimitstring)
+       console.log(lastLimitInt)   
        
        let difference=lastLimitInt-newamount;
+       console.log(difference)
+       let diffString=difference.toString();
        
        var pData = {
           ExpenseType : expenseType,
@@ -34,20 +39,28 @@ $(document).ready(function () {
          Amount : newamount,
          ExpensePurpose : purpose,
          Card : card,
-         AvailableLimit: difference
+         AvailableLimit: diffString
       }
       
-      // InsertDataIntoDb(pData);
+      InsertDataIntoDb(pData);
       
-      var allData=FetchAllData()
+      FetchAllData()
+      console.log(allData)
       
-      t.row.add([expenseType,expensedate, amount, purpose, card, difference]).draw(false);
+      for(let i=0;i<allData.length;i++){
+         t.row.add([allData[i][1],allData[i][2],allData[i][3],allData[i][4],allData[i][5],allData[i][6],]).draw(false);
+      }
+
+      allData=undefined;
+
+      // t.row.add([expenseType,expensedate, amount, purpose, card, difference]).draw(false);
    });
 
     function InsertDataIntoDb(pData) {
       var settings = {
          "url": "https://localhost:44328/api/Home/AddValues",
          "method": "POST",
+         "async":false,
          "timeout": 0,
          "headers": {
            "Content-Type": "application/json"
@@ -56,7 +69,7 @@ $(document).ready(function () {
       };
        
        $.ajax(settings).done(function (response) {
-         console.log(response);
+         // console.log(response);
        });
    }
    
@@ -66,14 +79,16 @@ $(document).ready(function () {
          "method": "GET",
          "async":false,
          "success":function(response){
-            lastLimitInt=response
+            // console.log(response);
+            lastLimitstring=response;
          },
          "timeout": 0,
        };
        
        $.ajax(settings).done(function (response) {
-         console.log(response);
-         return response
+         // console.log(response);
+         // lastLimitstring=response;
+         // return response;
        });
    }
 
@@ -82,10 +97,14 @@ $(document).ready(function () {
          "url": "https://localhost:44328/api/Home/FetchValues",
          "method": "GET",
          "timeout": 0,
+         "async":false,
+         "success":function(response){
+            allData=response;
+         }
        };
        
        $.ajax(settings).done(function (response) {
-         console.log(response);
+         // console.log(response);
        });
    }
 
