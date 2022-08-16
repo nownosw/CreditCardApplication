@@ -13,6 +13,11 @@ $(document).ready(function () {
       scrollY: "82.9%",
     });
 
+    FetchAllData();
+    for(let i=0;i<allData.length;i++){
+      t.row.add([allData[i][1],allData[i][2],allData[i][3],allData[i][4],allData[i][5],allData[i][6],]).draw(false);
+   }
+
     var form = document.getElementById("myform");
     var t = $("#example").DataTable();
     form.addEventListener("submit", function (event) {
@@ -25,12 +30,9 @@ $(document).ready(function () {
        newamount=parseInt(amount)
        
        GetLastLimit();
-       var lastLimitInt=parseInt(lastLimitstring);
-       console.log(lastLimitstring)
-       console.log(lastLimitInt)   
+       var lastLimitInt=parseInt(lastLimitstring); 
        
        let difference=lastLimitInt-newamount;
-       console.log(difference)
        let diffString=difference.toString();
        
        var pData = {
@@ -45,7 +47,8 @@ $(document).ready(function () {
       InsertDataIntoDb(pData);
       
       FetchAllData()
-      console.log(allData)
+
+      t.clear().draw()
       
       for(let i=0;i<allData.length;i++){
          t.row.add([allData[i][1],allData[i][2],allData[i][3],allData[i][4],allData[i][5],allData[i][6],]).draw(false);
