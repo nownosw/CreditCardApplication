@@ -5,67 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Credit Card Application</title>
   </head>
-  <body>
+  <body style="background-color: #507e8c">
     <link rel="stylesheet" href="/styles/styles.css" />
-    
+
     <!-- Bootstrap Contents -->
     <link
-    rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
+
     <!-- Datatable Contents -->
     <link
-    rel="stylesheet"
-    href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script
-    type="text/javascript"
-    src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"
+      type="text/javascript"
+      src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"
     ></script>
 
     <!-- Highcharts Contents -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/data.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-<!-- Navbar Begins-->
-<nav class="navbar navbar-light">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#"><b>Pay</b>Me</a>
+    <!-- Navbar Begins-->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><b>Pay</b>Me</a>
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#">Manage Expenses</a></li>
           <li>
             <a href="/pages/addCreditCard/CreditCard.html"
-            >Manage Credit Cards</a
+              >Manage Credit Cards</a
             >
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
             <a href="#"
-            ><span class="glyphicon glyphicon-usd"></span> Available Limit:
-            $25,000</a
+              ><span class="glyphicon glyphicon-usd"></span> Available Limit:
+              $25,000</a
             >
           </li>
           <li>
             <a href="#"
-            ><span class="glyphicon glyphicon-log-in"></span> Login</a
+              ><span class="glyphicon glyphicon-log-in"></span> Login</a
             >
           </li>
         </ul>
       </div>
     </nav>
     <!-- Navbar Ends -->
-    
+
     <div class="wrapperdiv">
       <!-- Credit Card Display Begins -->
       <div class="creditcard-info">
@@ -96,7 +96,7 @@
         </div>
       </div>
       <!-- Credit Card Display Ends -->
-      
+
       <!-- Add Expense Block Starts -->
       <div class="add-expense">
         <div class="formcontainer">
@@ -126,15 +126,20 @@
               </li> -->
               <li>
                 <label for="amount">Enter Your Expense Amount ($)</label>
-                <input type="number" name="amount" id="amount" maxlength="100" />
+                <input
+                  type="number"
+                  name="amount"
+                  id="amount"
+                  maxlength="100"
+                />
               </li>
               <li>
                 <label for="purpose">Expense Purpose</label>
                 <input
-                type="text"
-                name="purpose"
-                id="purpose"
-                maxlength="100"
+                  type="text"
+                  name="purpose"
+                  id="purpose"
+                  maxlength="100"
                 />
               </li>
               <li>
@@ -174,9 +179,7 @@
         </div>
         <!-- Expense Graph Container Begins -->
         <div class="datatablecontainer" id="expensegraphcontainer">
-          <div class="graph">
-            
-          </div>
+          <div class="graph"></div>
         </div>
         <!-- Expense Graph Container Ends -->
         <div class="buttoncontainer">
@@ -187,4 +190,4 @@
     </div>
     <script src="/scripts/index.js"></script>
   </body>
-  </html>
+</html>

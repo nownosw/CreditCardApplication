@@ -312,11 +312,14 @@ $(document).ready(function () {
   function changeView(){
     var x=document.getElementById("datatablecontainer")
     var y=document.getElementById("expensegraphcontainer")
-    if(x.style.display=="block"){
-        x.style.display="none";
-        y.style.display="block"
-    }else{
+    var btn=document.getElementById("changeview")
+    btn.textContent="View Data Table";
+    if(x.style.display=="none"){
         x.style.display="block";
         y.style.display="none"
+        btn.textContent="View Graph"
+    }else{
+        x.style.display="none";
+        y.style.display="block"
     }
 }
