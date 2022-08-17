@@ -18,6 +18,15 @@ $(document).ready(function () {
       t.row.add([allData[i][1],allData[i][2],allData[i][3],allData[i][4],allData[i][5],allData[i][6],]).draw(false);
    }
 
+   GetLastLimit();
+   var lastLimitInt=parseInt(lastLimitstring);
+
+   expensecard=document.getElementById("balance")
+   expenselimitnav=document.getElementById("expenselimit")
+
+   expensecard.textContent="$"+lastLimitInt
+   expenselimitnav.textContent="Available Limit: $"+lastLimitInt
+
     var form = document.getElementById("myform");
     var t = $("#example").DataTable();
     form.addEventListener("submit", function (event) {
@@ -55,6 +64,12 @@ $(document).ready(function () {
       }
 
       allData=undefined;
+
+      expensecard=document.getElementById("balance")
+      expenselimitnav=document.getElementById("expenselimit")
+
+      expensecard.textContent="$"+diffString
+      expenselimitnav.textContent="Available Limit: $"+diffString
 
       // t.row.add([expenseType,expensedate, amount, purpose, card, difference]).draw(false);
    });
@@ -322,4 +337,11 @@ $(document).ready(function () {
         x.style.display="none";
         y.style.display="block"
     }
+}
+
+function NavbarFunction(){
+   var navbar=document.getElementById("nav")
+   var navbar1=document.getElementById("nav1")
+   navbar.classList.toggle('show')
+   navbar1.classList.toggle('show')
 }
